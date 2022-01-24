@@ -66,20 +66,44 @@
 		1B4BED08278DA7B00098B3BF /* 8-Ball Without Actual Ball */ = {
 			isa = PBXGroup;
 			children = (
-				1B4BED09278DA7B00098B3BF /* AppDelegate.swift */,
-				1B4BED0B278DA7B00098B3BF /* SceneDelegate.swift */,
-				1B4BED0D278DA7B00098B3BF /* ViewController.swift */,
-				1B4BED27278F29630098B3BF /* NetworkManager + Reachability.swift */,
-				1B4BED2A278F344D0098B3BF /* Model.swift */,
-				1B4BED1E278EE2440098B3BF /* SecondViewController.swift */,
-				1B4BED22278EE7280098B3BF /* AnswerCell.swift */,
-				1B4BED3527906E740098B3BF /* DataModel.xcdatamodeld */,
+				1BB40EB8279EFC61006AB69D /* Support Files  */,
+				1BB40EB5279EFC19006AB69D /* Controllers */,
+				1BB40EB6279EFC38006AB69D /* Network Files */,
 				1B4BED0F278DA7B00098B3BF /* Main.storyboard */,
 				1B4BED12278DA7BA0098B3BF /* Assets.xcassets */,
 				1B4BED14278DA7BA0098B3BF /* LaunchScreen.storyboard */,
 				1B4BED17278DA7BA0098B3BF /* Info.plist */,
 			);
 			path = "8-Ball Without Actual Ball";
+			sourceTree = "<group>";
+		};
+		1BB40EB5279EFC19006AB69D /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				1B4BED0D278DA7B00098B3BF /* ViewController.swift */,
+				1B4BED1E278EE2440098B3BF /* SecondViewController.swift */,
+				1B4BED22278EE7280098B3BF /* AnswerCell.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		1BB40EB6279EFC38006AB69D /* Network Files */ = {
+			isa = PBXGroup;
+			children = (
+				1B4BED2A278F344D0098B3BF /* Model.swift */,
+				1B4BED27278F29630098B3BF /* NetworkManager + Reachability.swift */,
+			);
+			path = "Network Files";
+			sourceTree = "<group>";
+		};
+		1BB40EB8279EFC61006AB69D /* Support Files  */ = {
+			isa = PBXGroup;
+			children = (
+				1B4BED0B278DA7B00098B3BF /* SceneDelegate.swift */,
+				1B4BED09278DA7B00098B3BF /* AppDelegate.swift */,
+				1B4BED3527906E740098B3BF /* DataModel.xcdatamodeld */,
+			);
+			path = "Support Files ";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

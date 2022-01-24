@@ -14,8 +14,7 @@ class SecondViewController: UIViewController, UITableViewDataSource {
     @IBOutlet var saveButton: UIButton!
     @IBOutlet var answerTextField: UITextField!
     
-    //var answers = ["Just do it!", "Change your mind"]
-    var answers: [Answers] = []
+    private var answers: [Answers] = []
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -71,7 +70,7 @@ class SecondViewController: UIViewController, UITableViewDataSource {
         }
     }
     
-    func saveAnswer(withTitle title: String) {
+    private func saveAnswer(withTitle title: String) {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
         
@@ -101,5 +100,6 @@ class SecondViewController: UIViewController, UITableViewDataSource {
         }
     }
 }
+
             
             

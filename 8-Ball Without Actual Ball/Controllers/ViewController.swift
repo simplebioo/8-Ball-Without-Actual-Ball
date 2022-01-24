@@ -6,15 +6,33 @@
 //
 
 import UIKit
+import CoreData
 
 class ViewController: UIViewController, UITextViewDelegate {
 
     @IBOutlet var textView: UITextView!
     @IBOutlet var shakeLabel: UILabel!
     
+    var answers: [Answers] = []
+    
     private let defaultString = "Come on! Ask your question?"
     
-    let networkManager = NetworkManager()
+    private let networkManager = NetworkManager()
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        
+        let fetchRequest: NSFetchRequest<Answers> = Answers.fetchRequest()
+        
+        do {
+            answers = try context.fetch(fetchRequest)
+        } catch let error as NSError {
+            print(error.localizedDescription)
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +40,7 @@ class ViewController: UIViewController, UITextViewDelegate {
         setupUI()
     }
     
-    func setupUI() {
+    private func setupUI() {
         
         view.backgroundColor = .yellow
         
@@ -44,7 +62,7 @@ class ViewController: UIViewController, UITextViewDelegate {
         }
     }
     
-    func textViewDidEndEditing(_textView: UITextView) {
+    private func textViewDidEndEditing(_textView: UITextView) {
         if textView.text.isEmpty {
             textView.text = defaultString
             textView.textColor = UIColor.lightGray
@@ -68,8 +86,14 @@ class ViewController: UIViewController, UITextViewDelegate {
                 }
             }
         } else {
-            print("Internet connection FAILED")
-         }
+            if textView.text != defaultString, !textView.text.trimmingCharacters(in: .whitespaces).isEmpty {
+            DispatchQueue.main.async { [weak self] in
+                self?.shakeLabel.textColor = .red
+                self?.shakeLabel.text = self?.answers.randomElement()?.answer ?? "Please enter default answers"
+            }
+        }
+      }
+        view.endEditing(true)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -81,4 +105,5 @@ class ViewController: UIViewController, UITextViewDelegate {
         }
     }
 }
+
 
