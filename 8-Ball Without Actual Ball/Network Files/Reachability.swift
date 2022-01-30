@@ -1,8 +1,8 @@
 //
-//  NetworkManager + Reachability.swift
+//  Reachability.swift
 //  8-Ball Without Actual Ball
 //
-//  Created by Bioo on 12.01.2022.
+//  Created by Bioo on 30.01.2022.
 //
 
 import Foundation
@@ -26,24 +26,3 @@ class Reachability {
         return (isReachable && !needsConnection)
     }
 }
-
-struct NetworkManager {
-    func fetch(compltion: @escaping (Result<ModelAnswer, Error>) -> ()) {
-        guard let url = URL(string: "https://8ball.delegator.com/magic/JSON/question_string") else { return }
-        
-        let session = URLSession.shared
-        session.dataTask(with: url) { (data, response, error) in
-        
-        guard let data = data else { return }
-
-        do {
-            let json = try JSONDecoder().decode(ModelAnswer.self, from: data)
-            compltion(.success(json))
-        } catch {
-            print(error)
-            compltion(.failure(error))
-            }
-        }.resume()
-    }
-}
-

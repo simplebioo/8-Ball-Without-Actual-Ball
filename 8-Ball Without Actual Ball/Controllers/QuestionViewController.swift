@@ -73,7 +73,7 @@ class ViewController: UIViewController, UITextViewDelegate {
         
         if Reachability.isConnectedToNetwork(),textView.text != defaultString, !textView.text.trimmingCharacters(in: .whitespaces).isEmpty {
             
-            networkManager.fetch { [weak self] result in
+            networkManager.fetchAnswer { [weak self] result in
                 guard let self = self else { return }
                 switch result {
                 case .success(let answer):
@@ -85,16 +85,14 @@ class ViewController: UIViewController, UITextViewDelegate {
                     print(error)
                 }
             }
-        } else {
-            if textView.text != defaultString, !textView.text.trimmingCharacters(in: .whitespaces).isEmpty {
+        } else if textView.text != defaultString, !textView.text.trimmingCharacters(in: .whitespaces).isEmpty {
             DispatchQueue.main.async { [weak self] in
                 self?.shakeLabel.textColor = .red
                 self?.shakeLabel.text = self?.answers.randomElement()?.answer ?? "Please enter default answers"
             }
         }
-      }
         view.endEditing(true)
-    }
+      }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)

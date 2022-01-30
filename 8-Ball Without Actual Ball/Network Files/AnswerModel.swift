@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ModelAnswer: Codable {
+struct AnswerModel: Codable {
     let magic: Magic
 }
 
